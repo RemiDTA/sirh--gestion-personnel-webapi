@@ -6,8 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,8 +23,17 @@ public class ControllerCollaborateur {
 	private CollaborateurRepository collaborateurRepo;
 	
 	@GetMapping(value = "/{matricule}")
-	public List<Collaborateur> listerCollaborateurParam(@PathVariable String matricule) {
+	public Collaborateur listerCollaborateurParam(@PathVariable String matricule) {
 		return this.collaborateurRepo.findByMatricule(matricule);
+	}
+	
+	@PutMapping(value = "/{matricule}")
+	public void modifierCollaborateurParam(@PathVariable String matricule, @RequestBody Collaborateur col) {
+		Collaborateur colModif= this.collaborateurRepo.findByMatricule(col.getMatricule());
+		colModif.setDept(col.getDept());
+		colModif.setNom(col.getNom());
+		colModif.setPrenom(col.getPrenom());
+		collaborateurRepo.save(colModif);
 	}
 	
 	@GetMapping

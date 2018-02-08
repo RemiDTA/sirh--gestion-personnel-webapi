@@ -1,11 +1,15 @@
 package dev.entite;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -25,6 +29,9 @@ public class Collaborateur {
 	private Departement dept;
 	@Column(name = "matricule", length = 100)
 	private String matricule;
+	@ManyToMany
+	@JoinTable(name="banque_collaborateur")
+	private List <Banque> banques;
 	
 
 	public Integer getId() {

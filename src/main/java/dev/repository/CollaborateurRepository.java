@@ -9,5 +9,5 @@ import dev.entite.Collaborateur;
 public interface CollaborateurRepository extends JpaRepository<Collaborateur, Integer> {
 	List <Collaborateur> findByDept_id(int id);
 
-	List<Collaborateur> findByMatricule(String matricule);
+	Collaborateur findByMatricule(String matricule);
 }
