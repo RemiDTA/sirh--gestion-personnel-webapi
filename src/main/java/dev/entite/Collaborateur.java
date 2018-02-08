@@ -1,5 +1,6 @@
 package dev.entite;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "collaborateur")
-public class Collaborateur {
+public class Collaborateur{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,6 +64,12 @@ public class Collaborateur {
 	}
 	public void setMatricule(String matricule) {
 		this.matricule = matricule;
+	}
+	public List<Banque> getBanques() {
+		return banques;
+	}
+	public void setBanques(List<Banque> banques) {
+		this.banques = banques;
 	}
 
 }
